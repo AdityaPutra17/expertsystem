@@ -1,0 +1,9 @@
+@extends('admin.tamplate')
+@section('title', 'Admin - Home')
+
+@section("content")
+    <div class="">
+        <h1 class="text-4xl font-bold">Dashboard</h1>
+        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Unde, assumenda! Maiores voluptatum repudiandae, aliquam quibusdam maxime expedita est obcaecati consequatur quod in repellendus vero, tenetur labore, laboriosam vitae perferendis! A ab ratione enim tenetur, modi id neque cupiditate, voluptatum numquam debitis delectus natus! Ipsum quos illum repudiandae nihil qui quod pariatur eaque voluptate recusandae quaerat nulla laudantium deleniti consequuntur esse, officiis quia distinctio vel ipsa nemo error aperiam ullam tenetur, totam doloribus. Facilis id quae tempora qui sapiente delectus nesciunt accusamus optio sit nulla et repellendus dolores ut molestias natus veniam debitis in doloremque, distinctio eos minima nobis. Deserunt libero veritatis vero! Minima quas reiciendis officiis quibusdam, sapiente maiores necessitatibus architecto assumenda laborum saepe totam, cupiditate odit natus minus ea quasi fuga, voluptas neque deserunt nemo. Recusandae culpa delectus laudantium, placeat tenetur perferendis, distinctio, explicabo expedita excepturi ducimus aliquid libero voluptatibus? Perferendis qui, magnam quae libero dolores facilis necessitatibus, explicabo molestiae consectetur, quas amet? Exercitationem nulla esse minima laboriosam consectetur vero cupiditate inventore, odit debitis pariatur, amet autem tenetur cumque. Minus, natus magnam? Eos saepe incidunt numquam tenetur reprehenderit, consectetur, consequuntur omnis facere voluptates praesentium magnam optio voluptas adipisci unde velit, hic ex fugiat doloremque? Dolore numquam beatae iste et.</p>
+    </div>
+@endsection
