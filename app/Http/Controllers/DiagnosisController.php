@@ -79,6 +79,34 @@ class DiagnosisController extends Controller
             }
         }
 
+        session(['detectedPenyakit' => $detectedPenyakit]); // Simpan ke session
+
         return view('diagnosis.result', compact('detectedPenyakit'));
     }
+
+
+    public function saveDiagnosis(Request $request)
+    {
+        $userNama = session('user_nama');
+        $answers = session('answers', []);
+        $penyakitId = $request->penyakit_id ?? session('detectedPenyakit')?->id;
+
+        Diagnosis::create([
+            'user_nama' => $userNama,
+            'answer_log' => json_encode($answers),
+            'penyakit_id' => $penyakitId,
+        ]);
+
+        session()->forget(['user_nama', 'answers', 'detectedPenyakit']);
+        return redirect()->route('diagnosis.form');
+    }
+
+    public function admin()
+    {
+        $diagnoses = Diagnosis::with('penyakit')->latest()->paginate(10);
+        return view('admin.diagnosa.index', compact('diagnoses'));
+    }
+    
+
+
 }

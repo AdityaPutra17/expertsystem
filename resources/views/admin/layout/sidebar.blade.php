@@ -20,6 +20,9 @@
           <a class="flex gap-4 mx-4 text-lg items-center" href="/admin/gejala"> <i class="fa-solid fa-book"></i> Gejala</a>
         </li>
         <li>
+          <a class="flex gap-4 mx-4 text-lg items-center" href="/admin/result"> <i class="fa-solid fa-book-medical"></i> Hasil Diagnosa</a>
+        </li>
+        <li>
           <a class="flex gap-4 mx-4 text-lg items-center" href="/admin/penyakit"> <i class="fa-solid fa-virus"></i> Penyakit</a>
         </li>
       </ul>
@@ -31,7 +34,7 @@
     @csrf
     <ul class="flex flex-col gap-1.5">
       <li>
-        <button class="flex gap-4 px-8 text-lg items-center" href=""> <i class="fa-solid fa-right-from-bracket"></i> Sign Out</button>
+        <button class="flex gap-4 px-8 text-lg items-center text-red-500" href=""> <i class="fa-solid fa-right-from-bracket"></i> Sign Out</button>
       </li>
     </ul>
   </form>

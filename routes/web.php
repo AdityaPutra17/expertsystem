@@ -26,10 +26,12 @@ Route::get('/admin', function () {
 Route::resource('/admin/penyakit', PenyakitController::class)->middleware('auth');
 Route::resource('/admin/gejala', GejalaController::class)->middleware('auth');
 Route::resource('/admin/aturan', AturanController::class)->middleware('auth');
+Route::get('/admin/result', [DiagnosisController::class, 'admin'])->middleware('auth')->name('admin.diagnosis.index');
 
 Route::get('/diagnosis', [DiagnosisController::class, 'showForm'])->name('diagnosis.form');
 Route::post('/diagnosis/start', [DiagnosisController::class, 'startDiagnosis'])->name('diagnosis.start');
 Route::get('/diagnosis/question/{id}', [DiagnosisController::class, 'question'])->name('diagnosis.question');
 Route::post('/diagnosis/process', [DiagnosisController::class, 'processAnswer'])->name('diagnosis.process');
 Route::get('/diagnosis/result', [DiagnosisController::class, 'result'])->name('diagnosis.result');
+Route::post('/diagnosis/save', [DiagnosisController::class, 'saveDiagnosis'])->name('diagnosis.save');
 
