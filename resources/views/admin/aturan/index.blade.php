@@ -12,8 +12,8 @@
         <thead>
             <tr class="bg-blue-950 text-white uppercase text-sm leading-normal">
                 <th class="py-3 px-6 text-left">No.</th>
-                <th class="py-3 px-6 text-left">Nama Gejala</th>
                 <th class="py-3 px-6 text-left">Nama Penyakit</th>
+                <th class="py-3 px-6 text-left">Nama Gejala</th>
                 <th class="py-3 px-6 text-center">Aksi</th>
             </tr>
         </thead>
@@ -21,8 +21,8 @@
             @foreach ($aturans as $index => $aturan)
                 <tr class="border-b border-gray-200 hover:bg-gray-100">
                     <td class="py-3 px-6 text-left">{{$index + 1 }}</td>
-                    <td class="py-3 px-6 text-left font-bold">{{$aturan->gejala_id}}</td>
-                    <td class="py-3 px-6 text-left">{{$aturan->penyakit_id}}</td>
+                    <td class="py-3 px-6 text-left font-bold">{{$aturan->penyakit->nama}}</td>
+                    <td class="py-3 px-6 text-left ">{{$aturan->gejala->nama}}</td>
                     <td class="py-3 px-6 text-center">
                         <button data-id="{{ $aturan->id }}" data-gejala="{{ $aturan->gejala_id }}" data-penyakit="{{ $aturan->penyakit_id }}" class="editModalBtn bg-blue-500 text-white px-3 py-1 rounded">Edit</button>
                         <form action="{{route('aturan.destroy', $aturan->id)}}" method="POST" class="inline-block">

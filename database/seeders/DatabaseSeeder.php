@@ -3,7 +3,9 @@
 namespace Database\Seeders;
 
 use App\Models\User;
-// use Illuminate\Database\Console\Seeds\WithoutModelEvents;
+use App\Models\Gejala;
+use App\Models\Penyakit;
+use App\Models\Aturan;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\Hash;
 
@@ -27,5 +29,12 @@ class DatabaseSeeder extends Seeder
             'password' => Hash::make('admin123'),
             'role' => 'admin',
         ]);
+
+        $this->call([
+            GejalaSeeder::class,
+            PenyakitSeeder::class,
+            AturanSeeder::class
+        ]);
+
     }
 }

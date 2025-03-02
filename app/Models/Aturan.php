@@ -12,4 +12,14 @@ class Aturan extends Model
 
     protected $tabel = 'aturans';
     protected $fillable = ['gejala_id', 'penyakit_id'];
+
+    public function gejala()
+    {
+        return $this->belongsTo(Gejala::class, 'gejala_id');
+    }
+    public function penyakit()
+    {
+        return $this->belongsTo(Penyakit::class, 'penyakit_id');
+    }
+
 }

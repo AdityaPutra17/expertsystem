@@ -5,6 +5,7 @@ use App\Http\Controllers\GejalaController;
 use App\Http\Controllers\PenyakitController;
 use App\Http\Controllers\AturanController;
 use App\Http\Controllers\AuthController;
+use App\Http\Controllers\DiagnosisController;
 
 Route::get('/', function () {
     return view('client.home');
@@ -21,19 +22,14 @@ Route::get('/admin', function () {
 
 
 
-// Route::get('/gejala', [GejalaController::class, 'index'])->name('gejala.index');
-// Route::get('/gejala/create', [GejalaController::class, 'create'])->name('gejala.create');
-// Route::post('/gejala', [GejalaController::class, 'store'])->name('gejala.store');
-// Route::put('/gejala/{id}', [GejalaController::class, 'update'])->name('gejala.update');
-// Route::delete('/gejala/{id}', [GejalaController::class, 'destroy'])->name('gejala.destroy');
-
-// Route::get('/penyakit', [PenyakitController::class, 'index'])->name('penyakit.index');
-// Route::get('/penyakit/create', [PenyakitController::class, 'create'])->name('penyakit.create');
-// Route::post('/penyakit', [PenyakitController::class, 'store'])->name('penyakit.store');
-// Route::put('/penyakit/{id}', [PenyakitController::class, 'update'])->name('penyakit.update');
-// Route::delete('/penyakit/{id}', [PenyakitController::class, 'destroy'])->name('penyakit.destroy');
 
 Route::resource('/admin/penyakit', PenyakitController::class)->middleware('auth');
 Route::resource('/admin/gejala', GejalaController::class)->middleware('auth');
 Route::resource('/admin/aturan', AturanController::class)->middleware('auth');
+
+Route::get('/diagnosis', [DiagnosisController::class, 'showForm'])->name('diagnosis.form');
+Route::post('/diagnosis/start', [DiagnosisController::class, 'startDiagnosis'])->name('diagnosis.start');
+Route::get('/diagnosis/question/{id}', [DiagnosisController::class, 'question'])->name('diagnosis.question');
+Route::post('/diagnosis/process', [DiagnosisController::class, 'processAnswer'])->name('diagnosis.process');
+Route::get('/diagnosis/result', [DiagnosisController::class, 'result'])->name('diagnosis.result');
 
