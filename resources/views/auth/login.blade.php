@@ -6,6 +6,7 @@
     <title>Login - Aplikasi</title>
     <link rel="icon" type="image/png"  href="{{asset('image/icon.png')}}"  >
     <script src="https://cdn.tailwindcss.com"></script>
+    @vite(['resources/css/app.css', 'resources/js/app.js'])
 </head>
 <body class="bg-gray-100 h-screen flex items-center justify-center">
 

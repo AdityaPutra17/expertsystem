@@ -18,26 +18,48 @@ class PenyakitSeeder extends Seeder
         // Menambahkan penyakit
         Penyakit::create([
             'kode' => 'P001',
-            'nama' => 'Depresi',
-            'deskripsi' => 'Gangguan suasana hati yang menyebabkan perasaan sedih dan kehilangan minat terhadap aktivitas.'
+            'nama' => 'Gaming Disorder',
+            'deskripsi' => 'Gaming disorder adalah gangguan perilaku bermain game yang berlebihan hingga membawa pengaruh negatif pada aspek lain dalam hidup Anda. Gaming disorder masuk ke dalam Klasifikasi Penyakit Internasional (ICD-11) sebagai pola perilaku game (game digital atau video gaming) yang ditandai dengan gangguan kontrol diri atas game.'
         ]);
         
         Penyakit::create([
             'kode' => 'P002',
-            'nama' => 'Kecemasan',
-            'deskripsi' => 'Perasaan khawatir yang berlebihan yang mengganggu kehidupan sehari-hari.'
+            'nama' => 'anxiety disorder',
+            'deskripsi' => 'Anxiety disorder adalah gangguan mental yang ditandai dengan perasaan cemas yang berlebihan, ketakutan, dan kekhawatiran yang berlebihan. Anxiety disorder dapat memengaruhi cara Anda berpikir, merasa, dan berperilaku.'
         ]);
 
         Penyakit::create([
             'kode' => 'P003',
-            'nama' => 'Gangguan Tidur',
-            'deskripsi' => 'Kesulitan tidur atau tidur yang terganggu, termasuk insomnia atau tidur yang berlebihan.'
+            'nama' => 'Demotivasi',
+            'deskripsi' => 'Demotivasi adalah kondisi ketika seseorang tidak memiliki motivasi untuk melakukan sesuatu di kehidupannya, baik itu terhadap pekerjaan, sekolah/belajar, maupun mengembangkan diri. '
         ]);
 
         Penyakit::create([
             'kode' => 'P004',
-            'nama' => 'Gangguan Makan',
-            'deskripsi' => 'Kelainan yang melibatkan perilaku makan yang tidak sehat atau berlebihan.'
+            'nama' => 'Burnout / Kejenuhan',
+            'deskripsi' => 'Burnout adalah kelelahan secara fisik, emosional, atau mental yang disertai dengan penurunan motivasi, kinerja, dan munculnya sikap negatif terhadap diri sendiri maupun orang lain'
+        ]);
+
+        Penyakit::create([
+            'kode' => 'P005',
+            'nama' => 'Depresi',
+            'deskripsi' => 'Depresi adalah gangguan mental yang ditandai dengan perasaan sedih, kehilangan minat atau kesenangan, rasa bersalah, dan kehilangan energi. Depresi dapat memengaruhi cara Anda tidur, makan, dan berpikir.'
+        ]);
+
+        Penyakit::create([
+            'kode' => 'P006',
+            'nama' => 'BPD (Borderline Personality Disorder)',
+            'deskripsi' => 'Borderline personality disorder (BPD) adalah gangguan mental yang ditandai dengan pola pikiran dan perilaku yang tidak stabil, termasuk gambaran diri yang buruk, hubungan antarpribadi yang tidak stabil, dan perilaku impulsif.'
+        ]);
+        Penyakit::create([
+            'kode' => 'P007',
+            'nama' => 'NPD (Narcissistic Personality Disorder)',
+            'deskripsi' => 'Narcissistic personality disorder (NPD) adalah gangguan kepribadian yang ditandai dengan rasa percaya diri yang berlebihan, kebutuhan akan pujian, dan kurangnya empati terhadap orang lain.'
+        ]);
+        Penyakit::create([
+            'kode' => 'P008',
+            'nama' => 'Duck Syndrome',
+            'deskripsi' => 'Duck syndrome adalah kondisi di mana seseorang tampak tenang dan santai di permukaan, tetapi sebenarnya sedang stres atau cemas di dalam hati.'
         ]);
     }
 }

@@ -14,16 +14,16 @@
           <a class="flex gap-4 mx-4 text-lg items-center" href="/home"> <i class="fa-solid fa-house"></i>Dashboard</a>
         </li>
         <li>
-          <a class="flex gap-4 mx-4 text-lg items-center" href="/admin/aturan"> <i class="fa-solid fa-notes-medical"></i> Aturan</a>
-        </li>
-        <li>
           <a class="flex gap-4 mx-4 text-lg items-center" href="/admin/gejala"> <i class="fa-solid fa-book"></i> Gejala</a>
         </li>
         <li>
-          <a class="flex gap-4 mx-4 text-lg items-center" href="/admin/result"> <i class="fa-solid fa-book-medical"></i> Hasil Diagnosa</a>
+          <a class="flex gap-4 mx-4 text-lg items-center" href="/admin/penyakit"> <i class="fa-solid fa-virus"></i> Penyakit</a>
         </li>
         <li>
-          <a class="flex gap-4 mx-4 text-lg items-center" href="/admin/penyakit"> <i class="fa-solid fa-virus"></i> Penyakit</a>
+          <a class="flex gap-4 mx-4 text-lg items-center" href="/admin/aturan"> <i class="fa-solid fa-notes-medical"></i> Aturan</a>
+        </li>
+        <li>
+          <a class="flex gap-4 mx-4 text-lg items-center" href="/admin/result"> <i class="fa-solid fa-book-medical"></i> Hasil Diagnosa</a>
         </li>
       </ul>
     </div>
