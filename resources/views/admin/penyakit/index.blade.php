@@ -8,7 +8,7 @@
         <button id="modalCreateForm" class="bg-green-500 text-white font-bold text-center px-5 py-2 rounded">Tambah Penyakit</button>
     </div>
 
-    <table class="min-w-max w-full table-auto ">
+    <table class="min-w-max w-full table-fixed ">
         <thead>
             <tr class="bg-blue-950 text-white uppercase text-sm leading-normal">
                 <th class="py-3 px-6 text-left">No.</th>
@@ -49,7 +49,7 @@
             @csrf
             <div class="mb-4">
                 <label for="nama_penyakit" class="block text-sm font-medium text-gray-700">Kode Penyakit</label>
-                <input type="text" id="kode_penyakit" name="kode" required class="mt-2 block w-full px-4 py-2 border border-gray-300 rounded-md focus:ring-indigo-500 focus:border-indigo-500" />
+                <input type="text" id="kode_penyakit" name="kode" required class="mt-2 block w-full px-4 py-2 border border-gray-300 rounded-md focus:ring-indigo-500 focus:border-indigo-500" value="P{{ $newId }}" readonly />
             </div>
 
             <div class="mb-4">

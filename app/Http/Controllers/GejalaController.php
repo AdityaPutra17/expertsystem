@@ -14,7 +14,13 @@ class GejalaController extends Controller
     {
         //
         $gejalas = Gejala::all();
-        return view('admin.gejala.index', compact('gejalas'));
+
+        $lastGejala = Gejala::orderBy('id', 'desc')->first();
+        $lastId = $lastGejala ? (int) substr($lastGejala->kode, 1) : 0; 
+
+        $newId = $lastId + 1;
+
+        return view('admin.gejala.index', compact('gejalas', 'newId'));
     }
 
     /**
@@ -36,8 +42,18 @@ class GejalaController extends Controller
             'nama' => 'required'
         ]);
 
-        Gejala::create($request->all());
+        // Gejala::create($request->all());
+        $lastGejala = Gejala::orderBy('id', 'desc')->first();
+        $lastId = $lastGejala ? (int) substr($lastGejala->kode, 1) : 0;
 
+        $newId = $lastId + 1;
+        $newKode = 'G' . $newId;
+
+        $gejala = new Gejala();
+        $gejala->kode = $newKode;
+        $gejala->nama = $request->nama;
+        $gejala->save();
+        
         return redirect()->route('gejala.index')
             ->with('success', 'Gejala created successfully.');
     

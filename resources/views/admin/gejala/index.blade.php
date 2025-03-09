@@ -48,7 +48,7 @@
             <!-- Kode Gejala -->
             <div class="mb-4">
                 <label for="kode_gejala" class="block text-sm font-medium text-gray-700">Kode Gejala</label>
-                <input type="text" id="kode_gejala" name="kode" required class="mt-2 block w-full px-4 py-2 border border-gray-300 rounded-md focus:ring-indigo-500 focus:border-indigo-500" />
+                <input type="text" id="kode_gejala" name="kode" required class="mt-2 block w-full px-4 py-2 border border-gray-300 rounded-md focus:ring-indigo-500 focus:border-indigo-500" value="G{{$newId}}"/>
             </div>
 
             <!-- Nama Gejala -->
