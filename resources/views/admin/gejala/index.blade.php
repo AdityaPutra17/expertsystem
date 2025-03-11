@@ -4,37 +4,46 @@
 
 <section  class="text-start">
     <div class="flex mb-5 justify-between">
-        <h1 class="font-bold text-4xl text-blue-950">Kelola Gejala</h1>
+        <h1 class="font-bold text-4xl text-blue-900">Kelola Gejala</h1>
         <button id="modalCreateForm" class="bg-green-500 text-white font-bold text-center px-5 py-2 rounded">Tambah Gejala</button>
     </div>
 
-    <table class="min-w-max w-full table-auto ">
-        <thead>
-            <tr class="bg-blue-950 text-white uppercase text-sm leading-normal">
-                <th class="py-3 px-6 text-left">No.</th>
-                <th class="py-3 px-6 text-left">Nama Gejala</th>
-                <th class="py-3 px-6 text-left">Kode Gejala</th>
-                <th class="py-3 px-6 text-center">Aksi</th>
-            </tr>
-        </thead>
-        <tbody class="text-sm font-light">
-            @foreach ($gejalas as $index => $gejala)
-                <tr class="border-b border-gray-200 hover:bg-gray-100">
-                    <td class="py-3 px-6 text-left">{{$index + 1 }}</td>
-                    <td class="py-3 px-6 text-left font-bold">{{$gejala->nama}}</td>
-                    <td class="py-3 px-6 text-left">{{$gejala->kode}}</td>
-                    <td class="py-3 px-6 text-center">
-                        <button data-id="{{ $gejala->id }}" data-nama="{{ $gejala->nama }}" data-kode="{{ $gejala->kode }}" class="editModalBtn bg-blue-500 text-white px-3 py-1 rounded">Edit</button>
-                        <form action="{{route('gejala.destroy', $gejala->id)}}" method="POST" class="inline-block">
-                            @csrf
-                            @method('DELETE')
-                            <button class="bg-red-500 text-white px-3 py-1 rounded">Delete</button>
-                        </form>
-                    </td>
+    @if(session()->has('success'))
+        <div class="bg-green-500 text-white px-5 py-4 mb-5 rounded-lg" role="alert">
+            {{session('success')}}
+        </div>
+    @endif
+
+    <div class="p-5 bg-white rounded-lg shadow-lg">
+
+        <table class="min-w-max w-full table-auto bg-white">
+            <thead>
+                <tr class="bg-blue-950 text-white uppercase text-sm leading-normal rounded-lg">
+                    <th class="py-3 px-6 text-left">No.</th>
+                    <th class="py-3 px-6 text-left">Nama Gejala</th>
+                    <th class="py-3 px-6 text-left">Kode Gejala</th>
+                    <th class="py-3 px-6 text-center">Aksi</th>
                 </tr>
-            @endforeach
-        </tbody>
-    </table>
+            </thead>
+            <tbody class="text-sm font-light">
+                @foreach ($gejalas as $index => $gejala)
+                    <tr class="border-b border-gray-200 hover:bg-gray-100">
+                        <td class="py-3 px-6 text-left">{{$index + 1 }}</td>
+                        <td class="py-3 px-6 text-left font-bold">{{$gejala->nama}}</td>
+                        <td class="py-3 px-6 text-left">{{$gejala->kode}}</td>
+                        <td class="py-3 px-6 text-center">
+                            <button data-id="{{ $gejala->id }}" data-nama="{{ $gejala->nama }}" data-kode="{{ $gejala->kode }}" class="editModalBtn bg-blue-500 text-white px-3 py-1 rounded">Edit</button>
+                            <form action="{{route('gejala.destroy', $gejala->id)}}" method="POST" class="inline-block">
+                                @csrf
+                                @method('DELETE')
+                                <button class="bg-red-500 text-white px-3 py-1 rounded">Delete</button>
+                            </form>
+                        </td>
+                    </tr>
+                @endforeach
+            </tbody>
+        </table>
+    </div>
     
 </section>
 

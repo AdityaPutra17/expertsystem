@@ -4,39 +4,47 @@
 
 <section  class="text-start">
     <div class="flex mb-5 justify-between">
-        <h1 class="font-bold text-4xl text-blue-950">Kelola Penyakit</h1>
+        <h1 class="font-bold text-4xl text-blue-900">Kelola Penyakit</h1>
         <button id="modalCreateForm" class="bg-green-500 text-white font-bold text-center px-5 py-2 rounded">Tambah Penyakit</button>
     </div>
 
-    <table class="min-w-max w-full table-fixed ">
-        <thead>
-            <tr class="bg-blue-950 text-white uppercase text-sm leading-normal">
-                <th class="py-3 px-6 text-left">No.</th>
-                <th class="py-3 px-6 text-left">Nama Penyakit</th>
-                <th class="py-3 px-6 text-left">Kode Penyakit</th>
-                <th class="py-3 px-6 text-left">Deskripsi</th>
-                <th class="py-3 px-6 text-center">Aksi</th>
-            </tr>
-        </thead>
-        <tbody class="text-sm font-light">
-            @foreach ($penyakits as $index => $penyakit)
-                <tr class="border-b border-gray-200 hover:bg-gray-100">
-                    <td class="py-3 px-6 text-left">{{$index + 1 }}</td>
-                    <td class="py-3 px-6 text-left font-bold">{{$penyakit->nama}}</td>
-                    <td class="py-3 px-6 text-left">{{$penyakit->kode}}</td>
-                    <td class="py-3 px-6 text-left">{{$penyakit->deskripsi}}</td>
-                    <td class="py-3 px-6 text-center">
-                        <button data-id="{{ $penyakit->id }}" data-nama="{{ $penyakit->nama }}" data-kode="{{ $penyakit->kode }}" data-desk ="{{$penyakit->deskripsi}}" class="editModalBtn bg-blue-500 text-white px-3 py-1 rounded">Edit</button>
-                        <form action="{{route('penyakit.destroy', $penyakit->id)}}" method="POST" class="inline-block">
-                            @csrf
-                            @method('DELETE')
-                            <button class="bg-red-500 text-white px-3 py-1 rounded">Delete</button>
-                        </form>
-                    </td>
+    @if(session()->has('success'))
+        <div class="bg-green-500 text-white px-5 py-4 mb-5 rounded-lg" role="alert">
+            {{session('success')}}
+        </div>
+    @endif
+
+    <div class="p-5 bg-white rounded-lg shadow-lg">
+        <table class="min-w-max w-full table-fixed ">
+            <thead>
+                <tr class="bg-blue-950 text-white uppercase text-sm leading-normal">
+                    <th class="py-3 px-6 text-left">No.</th>
+                    <th class="py-3 px-6 text-left">Nama Penyakit</th>
+                    <th class="py-3 px-6 text-left">Kode Penyakit</th>
+                    <th class="py-3 px-6 text-left">Deskripsi</th>
+                    <th class="py-3 px-6 text-center">Aksi</th>
                 </tr>
-            @endforeach
-        </tbody>
-    </table>
+            </thead>
+            <tbody class="text-sm font-light">
+                @foreach ($penyakits as $index => $penyakit)
+                    <tr class="border-b border-gray-200 hover:bg-gray-100">
+                        <td class="py-3 px-6 text-left">{{$index + 1 }}</td>
+                        <td class="py-3 px-6 text-left font-bold">{{$penyakit->nama}}</td>
+                        <td class="py-3 px-6 text-left">{{$penyakit->kode}}</td>
+                        <td class="py-3 px-6 text-left">{{$penyakit->deskripsi}}</td>
+                        <td class="py-3 px-6 text-center">
+                            <button data-id="{{ $penyakit->id }}" data-nama="{{ $penyakit->nama }}" data-kode="{{ $penyakit->kode }}" data-desk ="{{$penyakit->deskripsi}}" class="editModalBtn bg-blue-500 text-white px-3 py-1 rounded">Edit</button>
+                            <form action="{{route('penyakit.destroy', $penyakit->id)}}" method="POST" class="inline-block">
+                                @csrf
+                                @method('DELETE')
+                                <button class="bg-red-500 text-white px-3 py-1 rounded">Delete</button>
+                            </form>
+                        </td>
+                    </tr>
+                @endforeach
+            </tbody>
+        </table>
+    </div>
     
 </section>
 

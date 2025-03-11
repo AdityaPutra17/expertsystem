@@ -10,10 +10,10 @@ class GejalaSeeder extends Seeder
 {
     public function run()
     {
-        Gejala::create(['kode' => 'G1', 'nama' => 'Kecemasan berlebihan dalam melakukan sesuatu']); 
+        Gejala::create(['kode' => 'G1', 'nama' => 'Kecemasan berlebihan dalam melakukan atau menghadapi sesuatu']); 
         Gejala::create(['kode' => 'G2', 'nama' => 'Kesulitan mengelola stres']); 
         Gejala::create(['kode' => 'G3', 'nama' => 'Menghabiskan waktu lebih banyak untuk bermain game daripada berinteraksi dengan orang lain']);
-        Gejala::create(['kode' => 'G4', 'nama' => 'Serangan panik secara tiba-tiba']); 
+        Gejala::create(['kode' => 'G4', 'nama' => 'Panik secara berkepanjangan atau sering pada situasi tertentu']); 
         Gejala::create(['kode' => 'G5', 'nama' => 'Perasaan sedih yang berlarut-larut']); 
         Gejala::create(['kode' => 'G6', 'nama' => 'Menarik diri dari kegiatan sosial atau profesional']); 
         Gejala::create(['kode' => 'G7', 'nama' => 'Kesulitan tidur atau tidur berlebihan']); 
@@ -21,7 +21,6 @@ class GejalaSeeder extends Seeder
         Gejala::create(['kode' => 'G9', 'nama' => 'Perilaku impulsif dan tidak stabil']); 
         Gejala::create(['kode' => 'G10', 'nama' => 'Ketakutan berlebihan terhadap penolakan atau ditinggalkan']); 
         Gejala::create(['kode' => 'G11', 'nama' => 'Ketegangan otot atau rasa tidak nyaman pada tubuh']); 
-
         Gejala::create(['kode' => 'G12', 'nama' => 'Kehilangan minat atau motivasi']);
         Gejala::create(['kode' => 'G13', 'nama' => 'Perubahan suasana hati yang ekstrem']);
         Gejala::create(['kode' => 'G14', 'nama' => 'Kelelahan fisik atau mental']);

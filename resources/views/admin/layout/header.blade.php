@@ -1,6 +1,6 @@
-    <div class="flex justify-end p-4 bg-blue-900 ">
+    <div class="flex justify-end p-4 bg-white shadow-xl">
         <div class="relative ">
-            <button onclick="toggleDropdown()" class=" text-white flex justify-end items-center gap-6 py-2 px-4 rounded-md">
+            <button onclick="toggleDropdown()" class=" text-grey-500 flex justify-end items-center gap-6 py-2 px-4 rounded-md">
                 Profil
                 <img src="{{asset('image/orang.png')}}" width="5%" alt="">
             </button>

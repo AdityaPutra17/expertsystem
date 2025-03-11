@@ -38,6 +38,7 @@ class AturanSeeder extends Seeder
         Aturan::create(['gejala_id' => 14, 'penyakit_id' => 4]); 
 
         // Depresi (Penyakit ID: 5)
+        Aturan::create(['gejala_id' => 1, 'penyakit_id' => 5]); 
         Aturan::create(['gejala_id' => 5, 'penyakit_id' => 5]); 
         Aturan::create(['gejala_id' => 6, 'penyakit_id' => 5]); 
         Aturan::create(['gejala_id' => 7, 'penyakit_id' => 5]); 

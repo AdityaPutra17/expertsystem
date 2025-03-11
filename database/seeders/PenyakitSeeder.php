@@ -24,7 +24,7 @@ class PenyakitSeeder extends Seeder
         
         Penyakit::create([
             'kode' => 'P2',
-            'nama' => 'anxiety disorder',
+            'nama' => 'Anxiety Disorder',
             'deskripsi' => 'Anxiety disorder adalah gangguan mental yang ditandai dengan perasaan cemas yang berlebihan, ketakutan, dan kekhawatiran yang berlebihan. Anxiety disorder dapat memengaruhi cara Anda berpikir, merasa, dan berperilaku.'
         ]);
 
