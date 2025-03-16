@@ -1,51 +1,71 @@
 @extends('admin.tamplate')
 
 @section('content')
-
-<section class="text-start">
+<div class="container mx-auto mt-5">
     <div class="flex mb-5 justify-between">
-        <h1 class="font-bold text-4xl text-blue-900">Hasil Diagnosa</h1>
+        <h1 class="font-bold text-4xl text-blue-900">Data Hasil Diagnosa</h1>
     </div>
 
-    @if(session()->has('success'))
-        <div class="bg-green-500 text-white px-5 py-4 mb-5 rounded-lg" role="alert">
-            {{session('success')}}
-        </div>
-    @endif
-
     <div class="p-5 bg-white rounded-lg shadow-lg">
-        <table class="w-full border-collapse border border-gray-200">
+        <table class="min-w-full bg-white ">
             <thead>
-                <tr class="bg-blue-950 text-white uppercase text-sm leading-normal">
-                    <th class="py-3 px-6 text-center">No</th>
-                    <th class="py-3 px-6 text-center">Nama Pengguna</th>
-                    <th class="py-3 px-6 text-center">Penyakit</th>
-                    <th class="py-3 px-6 text-center">Tanggal</th>
+                <tr class="bg-blue-900 text-white">
+                    <th class="border px-4 py-2">No</th>
+                    <th class="border px-4 py-2">Nama</th>
+                    <th class="border px-4 py-2">Hasil Diagnosa</th>
+                    <th class="border px-4 py-2">Detail Gejala</th>
+                    <th class="border px-4 py-2">Tanggal</th>
                 </tr>
             </thead>
             <tbody>
-                @if ($diagnoses->isEmpty())
+                @foreach ($diagnoses as $index => $diagnosis)
                     <tr>
-                        <td class="py-3 px-6 text-center" colspan="4">Tidak Ada Data Diagnosa</td>
+                        <td class="border px-4 py-2">{{$index +1}}</td>
+                        <td class="border px-4 py-2">{{ $diagnosis->user_nama }}</td>
+                        <td class="border px-4 py-2">
+                            @php
+                                $penyakitList = json_decode($diagnosis->penyakit_id, true);
+                            @endphp
+                            @if($penyakitList)
+                                <ul>
+                                    @foreach($penyakitList as $id => $percent)
+                                        @php $penyakit = \App\Models\Penyakit::find($id); @endphp
+                                        @if($penyakit)
+                                            <li>{{ $penyakit->nama }} ({{ $percent }}%)</li>
+                                        @endif
+                                    @endforeach
+                                </ul>
+                            @else
+                                <p>Tidak ada data</p>
+                            @endif
+                        </td>
+                        <td class="border px-4 py-2 text-center">
+                            <div x-data="{open: false}">
+                                <button @click="open = !open" class="bg-blue-900 text-white px-4 py-2 rounded">Lihat Detail</button>
+                            
+                                <div x-show="open" class="mt-2 p-2 bg-gray-100 border rounded">
+                                    @php
+                                        $gejalaLog = json_decode($diagnosis->answer_log, true);
+                                    @endphp
+                                    <ul class="text-left">
+                                        @foreach($gejalaLog as $gejalaId => $jawaban)
+                                            @php $gejala = \App\Models\Gejala::find($gejalaId); @endphp
+                                            @if($gejala)
+                                                <li class="py-1 border-b">{{ $gejala->nama }}: <span class="font-bold text-{{$jawaban ? 'green' : 'red'}}-600">{{ $jawaban ? 'Ya' : 'Tidak' }}</span></li>
+                                            @endif
+                                        @endforeach
+                                    </ul>
+                                </div>
+                            </div> 
+                        </td>
+                        <td class="border px-4 py-2">{{ $diagnosis->created_at->format('d M Y H:i') }}</td>
                     </tr>
-                @else
-                    @foreach ($diagnoses as $index => $diagnosis)
-                    <tr class="border-b border-gray-200 hover:bg-gray-100">
-                        <td class="py-3 px-6 text-center">{{ $index + 1 }}</td>
-                        <td class="py-3 px-6 text-center">{{ $diagnosis->user_nama }}</td>
-                        <td class="py-3 px-6 text-center">{{ $diagnosis->penyakit->nama ?? 'Tidak Ditemukan' }}</td>
-                        
-                        <td class="py-3 px-6 text-center">{{ $diagnosis->created_at->format('d-m-Y H:i') }}</td>
-                    </tr>
-                    @endforeach
-                @endif
+                @endforeach
             </tbody>
         </table>
     </div>
-    
 
-   
-</section>
+</div>
 
-
+<script src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js" defer></script>
 @endsection

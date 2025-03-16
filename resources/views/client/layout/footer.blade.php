@@ -1,5 +1,3 @@
-
-
 <footer class="bg-[#F2F7FF] dark:bg-gray-900">
     <div class="container mx-auto w-full p-4 py-6 lg:py-8">
         <div class="md:flex md:justify-between">
@@ -8,27 +6,18 @@
                   <img src="{{asset('image/logo.png')}}" class="h-14 me-3" alt="FlowBite Logo" />
                   
               </a>
+              <p class="text-blue-900">Peduli Mental, Peduli Masa Depan</p>
           </div>
           <div class="grid grid-cols-2 gap-8 sm:gap-6 sm:grid-cols-3">
-              <div>
-                  <h2 class="mb-6 text-sm font-semibold text-gray-900 uppercase dark:text-white">Resources</h2>
-                  <ul class="text-gray-500 dark:text-gray-400 font-medium">
-                      <li class="mb-4">
-                          <a href="https://flowbite.com/" class="hover:underline">Flowbite</a>
-                      </li>
-                      <li>
-                          <a href="https://tailwindcss.com/" class="hover:underline">Tailwind CSS</a>
-                      </li>
-                  </ul>
-              </div>
+             <div class=""></div>
               <div>
                   <h2 class="mb-6 text-sm font-semibold text-gray-900 uppercase dark:text-white">Follow us</h2>
                   <ul class="text-gray-500 dark:text-gray-400 font-medium">
                       <li class="mb-4">
-                          <a href="https://github.com/themesberg/flowbite" class="hover:underline ">Github</a>
+                          <a href="https://github.com/AdityaPutra17/expertsystem.git" class="hover:underline ">Github</a>
                       </li>
                       <li>
-                          <a href="https://discord.gg/4eeurUVvTy" class="hover:underline">Discord</a>
+                          <a href="https://wa.me/6283808282737" class="hover:underline">Whatsapp</a>
                       </li>
                   </ul>
               </div>

@@ -16,9 +16,8 @@ return new class extends Migration
             $table->id();
             $table->string('user_nama');
             $table->json('answer_log');
-            $table->unsignedBigInteger('penyakit_id')->nullable();
+            $table->json('penyakit_id')->nullable();
             $table->timestamps();
-            $table->foreign('penyakit_id')->references('id')->on('penyakits')->onDelete('set null');
         });
     }
 

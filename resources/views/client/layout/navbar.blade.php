@@ -2,6 +2,7 @@
 	<nav class="container mx-auto relative py-4 flex justify-between items-center bg-[#F2F7FF]">
 		<a class="text-3xl font-bold leading-none" href="/">
 			<img src="{{asset('image/logo.png')}} "  alt="">
+			<p class="text-blue-900 text-sm font-normal">Peduli Mental, Peduli Masa Depan</p>
 		</a>
 		<div class="lg:hidden">
 			<button class="navbar-burger flex items-center text-blue-600 p-3">
@@ -43,6 +44,7 @@
 			<div class="flex items-center mb-8">
 				<a class="mr-auto text-3xl font-bold leading-none" href="#">
 					<img src="{{asset('image/logo.png')}} "  alt="">
+					<p class="text-blue-900 text-sm font-normal">Peduli Mental, Peduli Masa Depan</p>
 				</a>
 				<button class="navbar-close">
 					<svg class="h-6 w-6 text-gray-400 cursor-pointer hover:text-gray-500" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">

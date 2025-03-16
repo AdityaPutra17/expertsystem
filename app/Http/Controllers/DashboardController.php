@@ -12,27 +12,36 @@ class DashboardController extends Controller
 {
     //
     public function index()
-    {
-        $statistikPenyakit = Diagnosis::select('penyakit_id', \DB::raw('count(*) as total'))
-        ->groupBy('penyakit_id')
-        ->get();
+{
+    $totalPenyakit = Penyakit::count();
+    $totalGejala = Gejala::count();
+    $totalAturan = Aturan::count();
+    $totalDiagnosa = Diagnosis::count();
 
-        // Ambil nama penyakit
-        $penyakitList = Penyakit::pluck('nama', 'id');
+    // Ambil semua data diagnosa
+    $diagnoses = Diagnosis::all();
 
-        // Format data untuk Chart.js
-        $labels = [];
-        $data = [];
+    // Hitung jumlah kemunculan setiap penyakit
+    $penyakitCounts = [];
 
-        foreach ($statistikPenyakit as $stat) {
-            $labels[] = $penyakitList[$stat->penyakit_id] ?? 'Tidak Diketahui';
-            $data[] = $stat->total;
+    foreach ($diagnoses as $diagnosis) {
+        $penyakitList = json_decode($diagnosis->penyakit_id, true); // Decode JSON
+
+        if (is_array($penyakitList)) {
+            foreach (array_keys($penyakitList) as $penyakitId) {
+                if (!isset($penyakitCounts[$penyakitId])) {
+                    $penyakitCounts[$penyakitId] = 0;
+                }
+                $penyakitCounts[$penyakitId]++;
+            }
         }
-
-        $totalPenyakit = Penyakit::count();
-        $totalGejala = Gejala::count();
-        $totalAturan = Aturan::count();
-        $totalDiagnosa = Diagnosis::count();
-        return view('admin.home', compact('totalPenyakit', 'totalGejala', 'totalAturan', 'totalDiagnosa', 'labels', 'data'));
     }
+
+    // Ambil nama penyakit berdasarkan ID
+    $labels = Penyakit::whereIn('id', array_keys($penyakitCounts))->pluck('nama')->toArray();
+    $data = array_values($penyakitCounts);
+
+    return view('admin.home', compact('labels', 'data', 'totalPenyakit', 'totalGejala', 'totalAturan', 'totalDiagnosa'));
+}
+
 }
