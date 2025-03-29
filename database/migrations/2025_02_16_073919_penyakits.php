@@ -17,6 +17,7 @@ return new class extends Migration
             $table->string('kode', 10)->unique();
             $table->string('nama');
             $table->text('deskripsi');
+            $table->text('solusi');
             $table->timestamps();
         });
     }

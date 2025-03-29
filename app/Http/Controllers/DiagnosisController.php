@@ -21,18 +21,20 @@ class DiagnosisController extends Controller
             'nama' => 'required|string|max:255',
         ]);
 
-        session(['user_nama' => $request->nama, 'answers' => [], 'possibleDiseases' => Aturan::pluck('penyakit_id')->unique()]);
+        session([
+            'user_nama' => $request->nama, 
+            'answers' => [],
+            'possibleDiseases' => Aturan::pluck('penyakit_id')->unique()->toArray()
+        ]);
 
-        // Ambil gejala pertama yang ada dalam aturan
         $firstGejala = Aturan::pluck('gejala_id')->unique()->first();
         return redirect()->route('diagnosis.question', ['id' => $firstGejala]);
     }
 
     public function question($id)
     {
-        $answers = session('answers', []);
         $gejala = Gejala::find($id);
-
+        
         if (!$gejala) {
             return redirect()->route('diagnosis.result');
         }
@@ -51,31 +53,36 @@ class DiagnosisController extends Controller
         $answers[$request->idgejala] = $request->answer;
         session(['answers' => $answers]);
     
-        // Ambil daftar penyakit yang masih mungkin
         $possibleDiseases = session('possibleDiseases', []);
-        if ($possibleDiseases instanceof \Illuminate\Support\Collection) {
-            $possibleDiseases = $possibleDiseases->toArray();
+    
+        if ($request->answer == 0) {
+            $possibleDiseases = array_values(array_filter($possibleDiseases, function ($penyakitId) use ($request) {
+                return !Aturan::where('penyakit_id', $penyakitId)->where('gejala_id', $request->idgejala)->exists();
+            }));
         }
     
-        // Hitung persentase untuk setiap penyakit
+        session(['possibleDiseases' => $possibleDiseases]);
+    
         $diseaseScores = [];
-        foreach ($possibleDiseases as $penyakitId) {
+        foreach (Penyakit::pluck('id') as $penyakitId) {
             $gejalaPenyakit = Aturan::where('penyakit_id', $penyakitId)->pluck('gejala_id')->toArray();
-            $totalGejala = count($gejalaPenyakit);
             $matchedGejala = count(array_intersect($gejalaPenyakit, array_keys(array_filter($answers))));
+            $totalGejala = count($gejalaPenyakit);
     
             if ($totalGejala > 0) {
                 $percentage = ($matchedGejala / $totalGejala) * 100;
                 $diseaseScores[$penyakitId] = round($percentage, 2);
+            } else {
+                $diseaseScores[$penyakitId] = 0;
             }
         }
     
         session(['diseaseScores' => $diseaseScores]);
     
-        // Cari gejala berikutnya yang belum ditanyakan
         $nextGejala = Aturan::whereIn('penyakit_id', $possibleDiseases)
                             ->whereNotIn('gejala_id', array_keys($answers))
                             ->pluck('gejala_id')
+                            ->unique()
                             ->first();
     
         if (!$nextGejala) {
@@ -85,14 +92,13 @@ class DiagnosisController extends Controller
         return redirect()->route('diagnosis.question', ['id' => $nextGejala]);
     }
     
-
     public function result()
     {
         $diseaseScores = session('diseaseScores', []);
-        arsort($diseaseScores); // Urutkan dari yang 
+        arsort($diseaseScores);
 
         $topDiseases = array_slice($diseaseScores, 0, 3, true);
-
+    
         $detectedDiseases = [];
         foreach ($topDiseases as $penyakitId => $percentage) {
             $detectedDiseases[] = [
@@ -100,7 +106,7 @@ class DiagnosisController extends Controller
                 'percentage' => $percentage
             ];
         }
-
+    
         return view('diagnosis.result', compact('detectedDiseases'));
     }
 
@@ -109,19 +115,16 @@ class DiagnosisController extends Controller
         $userNama = session('user_nama');
         $answers = session('answers', []);
     
-        // Ambil 3 penyakit dengan persentase tertinggi
         $diseaseScores = session('diseaseScores', []);
-        arsort($diseaseScores); // Urutkan dari yang tertinggi
+        arsort($diseaseScores);
         $topDiseases = array_slice($diseaseScores, 0, 3, true);
     
-        // Simpan ke database
         Diagnosis::create([
             'user_nama' => $userNama,
             'answer_log' => json_encode($answers),
-            'penyakit_id' => json_encode($topDiseases), // Simpan sebagai JSON
+            'penyakit_id' => json_encode($diseaseScores),
         ]);
     
-        // Reset session
         session()->forget(['user_nama', 'answers', 'diseaseScores', 'possibleDiseases']);
     
         return redirect()->route('diagnosis.form');

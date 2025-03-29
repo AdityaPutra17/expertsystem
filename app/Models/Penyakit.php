@@ -9,7 +9,7 @@ class Penyakit extends Model
 {
     //
     protected $table = 'penyakits';
-    protected $fillable = ['kode', 'nama', 'deskripsi'];
+    protected $fillable = ['kode', 'nama', 'deskripsi', 'solusi'];
 
     public function gejala()
     {

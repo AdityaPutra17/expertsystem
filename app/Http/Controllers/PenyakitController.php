@@ -39,7 +39,8 @@ class PenyakitController extends Controller
         // Validasi input dari form
         $request->validate([
             'nama' => 'required',
-            'deskripsi' => 'required'
+            'deskripsi' => 'required',
+            'solusi' => 'required'
         ]);
     
         // Mendapatkan kode penyakit terakhir
@@ -54,6 +55,7 @@ class PenyakitController extends Controller
         $penyakit->kode = $newKode;  // Assign kode otomatis
         $penyakit->nama = $request->nama;
         $penyakit->deskripsi = $request->deskripsi;
+        $penyakit->solusi = $request->solusi;
         $penyakit->save();
     
         // Redirect ke halaman daftar penyakit dengan pesan sukses
@@ -86,7 +88,8 @@ class PenyakitController extends Controller
         $request->validate([
             'kode' => 'required',
             'nama' => 'required',
-            'deskripsi' => 'required'
+            'deskripsi' => 'required',
+            'solusi' => 'required'
         ]);
 
         $penyakit = Penyakit::find($id);
